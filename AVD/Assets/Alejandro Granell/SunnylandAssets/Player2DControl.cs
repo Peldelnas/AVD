@@ -11,18 +11,11 @@ public class Player2DControl : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
-    public float runSpeed = 1f;
+    public float runSpeed = 40f;
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
-    public float Gravity2D = 0f;
-
-    private void ChangeGravity(float g)
-    {
-
-
-
-    }
+    public float Gravity2D = -30f;  
 
 
 
@@ -45,8 +38,7 @@ public class Player2DControl : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
 
-
-        // animator.SetFloat("Speed", Mathf.Abs(horizontalMove)); 
+         animator.SetFloat("Speed", Mathf.Abs(horizontalMove)); 
 
 
 
@@ -56,7 +48,7 @@ public class Player2DControl : MonoBehaviour
 
             jump = true;
 
-            //  animator.SetBool("IsJumping", true); 
+            animator.SetBool("IsJumping", true); 
 
         }
 
@@ -88,8 +80,18 @@ public class Player2DControl : MonoBehaviour
 
     {
 
-        // animator.SetBool("IsJumping", false); 
+         animator.SetBool("IsJumping", false); 
 
+    }
+
+    public void OnCrouching(bool isChrouching) { 
+        // animator.SetBool("IsCrouching", isCrouching);
+    }
+
+    void FixedUpdate()
+    {
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        jump = false;
     }
 
 }
