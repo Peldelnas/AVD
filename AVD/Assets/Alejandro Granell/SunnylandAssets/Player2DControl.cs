@@ -14,7 +14,7 @@ public class Player2DControl : MonoBehaviour
     public float runSpeed = 40f;
     float horizontalMove = 0f;
     bool jump = false;
-    bool crouch = false;
+    public bool crouch = false;
     public float Gravity2D = -30f;  
 
 
@@ -54,11 +54,12 @@ public class Player2DControl : MonoBehaviour
 
 
 
-        if (Input.GetButtonDown("Crouch"))
+        if (Input.GetButton("Crouch"))
 
         {
 
             crouch = true;
+            animator.SetBool("IsCrouching", true);
 
         }
 
@@ -67,7 +68,7 @@ public class Player2DControl : MonoBehaviour
         {
 
             crouch = false;
-
+            animator.SetBool("IsCrouching",  false);
         }
 
         
@@ -84,8 +85,8 @@ public class Player2DControl : MonoBehaviour
 
     }
 
-    public void OnCrouching(bool isChrouching) { 
-        // animator.SetBool("IsCrouching", isCrouching);
+    public void OnCrouching(bool isCrouching) { 
+        animator.SetBool("IsCrouching", isCrouching);
     }
 
     void FixedUpdate()
