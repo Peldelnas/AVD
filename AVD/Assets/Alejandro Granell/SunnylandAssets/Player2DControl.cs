@@ -15,7 +15,8 @@ public class Player2DControl : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     public bool crouch = false;
-    public float Gravity2D = -30f;  
+    public float Gravity2D = -30f;
+    private Rigidbody2D rigid;
 
 
 
@@ -24,6 +25,7 @@ public class Player2DControl : MonoBehaviour
     {
 
         Physics2D.gravity = new Vector2(0, Gravity2D);
+        rigid = gameObject.GetComponent<Rigidbody2D>();
 
     }
 
@@ -70,7 +72,7 @@ public class Player2DControl : MonoBehaviour
             crouch = false;
             animator.SetBool("IsCrouching",  false);
         }
-
+        animator.SetFloat("SpeedY",  rigid.velocity.y);
         
 
     }
