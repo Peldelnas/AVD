@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ADV/MAIN2019V.unity
+    path: Assets/Alejandro Granell/3D/ADV/MAIN2019V.unity
     guid: 1ffa77a7b7c2e9b4b8979f9525b129a1
   m_configObjects: {}
