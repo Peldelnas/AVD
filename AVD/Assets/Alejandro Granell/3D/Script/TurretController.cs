@@ -27,7 +27,8 @@ public class TurretController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AimFire();
+        Tracking();
     }
 
     void AimFire()
@@ -44,6 +45,21 @@ public class TurretController : MonoBehaviour
             {
                 Fire();
             }
+            else
+            {
+                foreach (var light in lights)
+                {
+                    light.SetActive(false);
+                }
+                animT.SetBool("isFiring", false);
+            }
+        }
+        if (target == null)
+        {
+            foreach (var light in lights)
+            {
+                light.SetActive(false);
+            }
         }
     }
 
@@ -53,5 +69,27 @@ public class TurretController : MonoBehaviour
         nextMoveTime = Time.time + firePauseTime;
         lights[cañonDisparado].SetActive(true);
         animT.SetBool("isFiring", true);
+    }
+
+    void Tracking()
+    {
+        Vector3 fwd = cañonesPos[cañonDisparado].TransformDirection(Vector3.forward);
+    }
+
+    void OnTriggerStay(Collider col)
+    {
+        if (!target)
+        {
+            if (col.CompareTag("Enemy"))
+            {
+                nextFireTime = Time.time + (reloadTime * 0.5f);
+                target = col.gameObject.transform;
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.transform == target) target = null;
     }
 }
