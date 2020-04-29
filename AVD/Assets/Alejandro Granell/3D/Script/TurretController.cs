@@ -9,12 +9,13 @@ public class TurretController : MonoBehaviour
     public GameObject bullet;
     public Transform[] bulletPositions;
     public Animator turretAnim;
+    private int i = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Die());
-        Shoot();
+        StartCoroutine(Shoot());
     }
 
     // Update is called once per frame
@@ -38,22 +39,13 @@ public class TurretController : MonoBehaviour
 
     }
 
-    public void Shoot()
-    {
-        int i = 0;
-        while(true)
-        {
+    IEnumerator Shoot()
+    {                       
             Instantiate(bullet, bulletPositions[i].position, bulletPositions[i].rotation);
             i++;
             if (i >= bulletPositions.Length) i = 0;
-            WaitForShoot();
-        }
-    }
-
-    IEnumerator WaitForShoot()
-    {
-        yield return new WaitForSeconds(frecuenciaDisparo);
-        yield return null;
+            yield return new WaitForSeconds(frecuenciaDisparo);
+            StartCoroutine(Shoot());
     }
 
 
