@@ -15,7 +15,7 @@ public class TurretController : MonoBehaviour
     void Start()
     {
         StartCoroutine(Die());
-        StartCoroutine(Shoot());
+        StartCoroutine(ToShoot());
     }
 
     // Update is called once per frame
@@ -37,6 +37,13 @@ public class TurretController : MonoBehaviour
     {
         //same as Die
 
+    }
+
+    IEnumerator ToShoot()
+    {
+        yield return new WaitForSeconds(1.0f);
+        StartCoroutine(Shoot());
+        yield return null;
     }
 
     IEnumerator Shoot()
