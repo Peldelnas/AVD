@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
-    public float life = 3f;
+    public float life = 4f;
     public float frecuenciaDisparo = 0.5f;
     public GameObject bullet;
     public Transform[] bulletPositions;
     public Animator turretAnim;
     private int i = 0;
 
+    public float power = 10.0f;
+    public float radius = 5.0f;
+    public float upForce = 1.0f;
+    public GameObject pos;
+    public GameObject[] topBot;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Die());
+        StartCoroutine(PrepareDie());
         StartCoroutine(ToShoot());
     }
 
@@ -24,18 +30,50 @@ public class TurretController : MonoBehaviour
         
     }
 
-    IEnumerator Die()
+    IEnumerator PrepareDie()
     {
         yield return new WaitForSeconds(life);
-
-        //DIE TO DO
-        yield return null;
-
+        StopAllCoroutines();
+        topBot[0].SetActive(false);
+        topBot[1].SetActive(false);
+        topBot[2].SetActive(true);
+        topBot[3].SetActive(true);
+        Vector3 explosionPosition = pos.transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if(rb != null)
+            {
+                rb.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
+            }
+        }
+        StartCoroutine(Delete());
     }
-
+    
+    IEnumerator Delete()
+    {
+        yield return new WaitForSeconds(6);
+        Destroy(gameObject);
+    }
     public void selfDestruct()
     {
-        //same as Die
+        StopAllCoroutines();
+        topBot[0].SetActive(false);
+        topBot[1].SetActive(false);
+        topBot[2].SetActive(true);
+        topBot[3].SetActive(true);
+        Vector3 explosionPosition = pos.transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
+            }
+        }
+        StartCoroutine(Delete());
 
     }
 
