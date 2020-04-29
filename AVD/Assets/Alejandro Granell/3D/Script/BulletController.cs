@@ -16,6 +16,16 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         rigidbodyy.AddForce(transform.forward * speed);
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, 3.0f);        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.tag == "Enemy")
+        {
+            //blabla
+        }
+        rigidbodyy.Sleep();
+
     }
 }

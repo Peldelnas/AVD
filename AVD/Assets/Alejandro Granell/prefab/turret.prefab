@@ -5943,7 +5943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 4
-  frecuenciaDisparo: 0.01
+  frecuenciaDisparo: 0.05
   bullet: {fileID: 1148635917399537734, guid: ebbabe29024d8c14f8903d4948d65475, type: 3}
   bulletPositions:
   - {fileID: 5432647216231516608}
