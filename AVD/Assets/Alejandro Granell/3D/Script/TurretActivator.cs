@@ -18,16 +18,16 @@ public class TurretActivator : MonoBehaviour
     void Start()
     {
         RB.AddForce(transform.forward * speed, ForceMode.Impulse);
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 5f);
 
         portal = GetComponent<VisualEffect>();
         portal.SetFloat("Major", 0.1f);
         portal.SetFloat("Minor", 0.1f);
     }
 
-    public void Die()
+    IEnumerator Die()
     {
-
+         yield return new WaitForSeconds(4.0f);
         Destroy(gameObject);
     }
 
@@ -41,12 +41,13 @@ public class TurretActivator : MonoBehaviour
             Instantiate(TurretPrefab, collision.contacts[0].point, Quaternion.identity, transform.parent);
             portal.SetFloat("Major", 3f);
             portal.SetFloat("Minor", 0.5f);
-            Die();
+            gameObject.GetComponent<Transform>().eulerAngles = new Vector3(90, 0, 0); 
+            StartCoroutine(Die());
 
         }
         else
         { //the ball touches any other layer 
-            GetComponent<Animator>().SetTrigger("Failure");
+            //Destroy(gameObject);
         }
         RB.Sleep();//avoid more interactions
     }
