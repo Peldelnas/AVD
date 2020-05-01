@@ -16,12 +16,15 @@ public class TurretController : MonoBehaviour
     public float upForce = 1.0f;
     public GameObject pos;
     public GameObject[] topBot;
+    public AudioSource audioS;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioS = GetComponent<AudioSource>();
         StartCoroutine(PrepareDie());
         StartCoroutine(ToShoot());
+
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class TurretController : MonoBehaviour
         topBot[3].SetActive(true);
         Vector3 explosionPosition = pos.transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
+        audioS.Play();
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
@@ -48,6 +52,7 @@ public class TurretController : MonoBehaviour
                 rb.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
             }
         }
+
         StartCoroutine(Delete());
     }
     
@@ -67,11 +72,13 @@ public class TurretController : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
         foreach (Collider hit in colliders)
         {
+            if (hit.tag == "turret") { 
             Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
-            }
+                if (rb != null)
+                {
+                    rb.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
+                }
+             }
         }
         StartCoroutine(Delete());
 

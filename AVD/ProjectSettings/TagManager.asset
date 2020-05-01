@@ -6,6 +6,7 @@ TagManager:
   tags:
   - door
   - Enemy
+  - turret
   layers:
   - Default
   - TransparentFX
