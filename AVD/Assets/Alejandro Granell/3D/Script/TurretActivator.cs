@@ -36,7 +36,7 @@ public class TurretActivator : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        Debug.Log(collision.gameObject.name);
+        
         if (layermask == (layermask | (1 << collision.gameObject.layer)))
         {//if the ball collides with ground then the turret is created
          // INSTANTIATE IN THE POINT OF COLLISION!!that's why we need to check collisions and not just Triggers. We parent the gameobject to the parent of the ball in order to recieve broadcasted future messages

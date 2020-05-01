@@ -23,10 +23,9 @@ public class TriggerInputT : MonoBehaviour
             if (!TurretWorking)
             {
                 Instantiate(BallTurretPrefab, PlayerTransform.position, PlayerTransform.rotation, transform);
-
-            }            
-            TurretWorking = !TurretWorking;
-            StartCoroutine(ResetTurret());
+                TurretWorking = true;
+                StartCoroutine(ResetTurret());
+            }                                   
 
         }
     }

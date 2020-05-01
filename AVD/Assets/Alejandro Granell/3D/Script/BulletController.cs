@@ -19,13 +19,17 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject, 3.0f);        
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider coll)
     {
-        if(collision.collider.tag == "Enemy")
+        Debug.Log(coll.tag);
+        if (coll.tag.Equals("Enemy"))
         {
-            //blabla
+            Debug.Log("lol");
+            CreatorKitCode.CharacterData target = coll.GetComponent<CreatorKitCode.CharacterData>();
+            CreatorKitCode.Weapon.AttackData daño = new CreatorKitCode.Weapon.AttackData(target);
+            daño.AddDamage(CreatorKitCode.StatSystem.DamageType.Electric, 2);
+            target.Damage(daño);
+            Destroy(gameObject);
         }
-        rigidbodyy.Sleep();
-
     }
 }
