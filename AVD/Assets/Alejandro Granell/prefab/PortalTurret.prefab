@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layermask:
     serializedVersion: 2
-    m_Bits: 260
+    m_Bits: 256
   speed: 10
   RB: {fileID: 1440596154387174296}
   TurretPrefab: {fileID: 4054733670704160923, guid: d576bf6188ba9294397a7601b50b31dd,

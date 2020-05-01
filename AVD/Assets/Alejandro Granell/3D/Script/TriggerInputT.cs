@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerInputT : MonoBehaviour
 {
     [SerializeField]
-    public static bool TurretWorking = false;
+    public bool TurretWorking = false;
     public GameObject BallTurretPrefab;
     public Transform PlayerTransform;
     // Start is called before the first frame update
@@ -17,21 +17,24 @@ public class TriggerInputT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.T))
         {
 
             if (!TurretWorking)
             {
                 Instantiate(BallTurretPrefab, PlayerTransform.position, PlayerTransform.rotation, transform);
 
-            }
-            else
-            {
-                BroadcastMessage("KillTurret");
-            }
+            }            
             TurretWorking = !TurretWorking;
-            Debug.Log(TurretWorking);
+            StartCoroutine(ResetTurret());
 
         }
+    }
+
+    IEnumerator ResetTurret()
+    {
+        yield return new WaitForSeconds(4.0f);
+        TurretWorking = false;
+        yield return null;
     }
 }
