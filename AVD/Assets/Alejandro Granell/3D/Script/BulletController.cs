@@ -24,7 +24,6 @@ public class BulletController : MonoBehaviour
         Debug.Log(coll.tag);
         if (coll.tag.Equals("Enemy"))
         {
-            Debug.Log("lol");
             CreatorKitCode.CharacterData target = coll.GetComponent<CreatorKitCode.CharacterData>();
             CreatorKitCode.Weapon.AttackData daño = new CreatorKitCode.Weapon.AttackData(target);
             daño.AddDamage(CreatorKitCode.StatSystem.DamageType.Electric, 2);
