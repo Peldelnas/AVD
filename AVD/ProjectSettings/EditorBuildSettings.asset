@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Alejandro Granell/UI.unity
+    guid: 11b40a983db1d5641819d77cbb7e2879
+  - enabled: 1
     path: Assets/Alejandro Granell/3D/ADV/MAIN2019V.unity
     guid: 1ffa77a7b7c2e9b4b8979f9525b129a1
   m_configObjects: {}
