@@ -15,7 +15,8 @@ namespace CreatorKitCodeInternal {
     {
         public static CharacterControl Instance { get; protected set; }
     
-        public float Speed = 10.0f;
+        public float Speed = 0.0f;
+        public bool inCinematic = true;
 
         public CharacterData Data => m_CharacterData;
         public CharacterData CurrentTarget => m_CurrentTargetCharacterData;
@@ -86,7 +87,8 @@ namespace CreatorKitCodeInternal {
         
             m_Agent = GetComponent<NavMeshAgent>();
             m_Animator = GetComponentInChildren<Animator>();
-        
+
+            Speed = 0f;
             m_Agent.speed = Speed;
             m_Agent.angularSpeed = 360.0f;
 
@@ -242,8 +244,14 @@ namespace CreatorKitCodeInternal {
             m_Animator.SetFloat(m_SpeedParamID, m_Agent.velocity.magnitude / m_Agent.speed);
         
             //Keyboard shortcuts
-            if(Input.GetKeyUp(KeyCode.I))
+            if(!inCinematic && Input.GetKeyUp(KeyCode.I))
                 UISystem.Instance.ToggleInventory();
+        }
+
+        public void exitCinematic()
+        {
+            inCinematic = false;
+            m_Agent.speed = 10f;
         }
 
         void GoToRespawn()
