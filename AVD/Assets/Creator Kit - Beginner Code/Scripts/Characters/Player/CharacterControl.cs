@@ -172,8 +172,11 @@ namespace CreatorKitCodeInternal {
             
                 return;
             }
-        
-            Ray screenRay = CameraController.Instance.GameplayCamera.ScreenPointToRay(Input.mousePosition);
+            
+           
+                Ray screenRay = CameraController.Instance.GameplayCamera.ScreenPointToRay(Input.mousePosition);
+            
+            
         
             if (m_TargetInteractable != null)
             {
@@ -249,7 +252,7 @@ namespace CreatorKitCodeInternal {
         }
 
         public void exitCinematic()
-        {
+        {            
             inCinematic = false;
             m_Agent.speed = 10f;
         }
