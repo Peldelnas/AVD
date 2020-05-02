@@ -40062,7 +40062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &942849658
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40089,7 +40089,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942849657}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -58446,7 +58446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1326321649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -58473,7 +58473,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326321648}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -76167,10 +76167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa299e554453bf54db845abf4b215f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canUse: 0
   TurretWorking: 0
   BallTurretPrefab: {fileID: 4541880675614482858, guid: d1e37b6b70547374ca00f0b757aca8cc,
     type: 3}
   PlayerTransform: {fileID: 760637560}
+  useT: {fileID: 0}
 --- !u!4 &1721654911
 Transform:
   m_ObjectHideFlags: 0
